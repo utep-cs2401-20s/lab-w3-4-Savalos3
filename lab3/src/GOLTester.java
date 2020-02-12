@@ -1,12 +1,17 @@
+import java.util.Arrays;
+
 public class GOLTester {
     public static void main(String[] args) {
 
-        GameOfLife x = new GameOfLife(4);//{{0,1},{0,1}},{{0,1},{0,1}}
-        int current = 0;
-        int count = 0;
-        if (current == 1){
+        int [][] ex ={ {0,1,0},
+                       {0,1,0},
+                       {0,1,0}
+                                };
+        GameOfLife x = new GameOfLife(ex);
 
-        }
+        System.out.println(Arrays.deepToString(x.getPrevious()));
+
+
     }
 }
 //   Person[] people = new Person[3];
