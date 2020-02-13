@@ -3,13 +3,16 @@ import java.util.Arrays;
 public class GOLTester {
     public static void main(String[] args) {
 
-        int [][] ex ={ {0,1,0},
-                       {0,1,0},
-                       {0,1,0}
-                                };
+//        int [][] ex ={ {0,1,0},
+//                       {0,1,0},
+//                       {0,1,0}
+//                                };
+        int [][] ex = { {0,0},
+                        {1,1}
+                            };
         GameOfLife x = new GameOfLife(ex);
 
-        System.out.println(Arrays.deepToString(x.getPrevious()));
+        System.out.println(Arrays.deepToString(x.getBoard()));
 
 
     }
