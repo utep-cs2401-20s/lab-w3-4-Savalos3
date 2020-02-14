@@ -19,6 +19,7 @@ public class GameOfLife {
         Previous = new int[Size][Size];
         Board = new int[Size][Size];
         Board = data;
+        Previous = Board;
     }
 
     public void setPrevious(int[][] Previous) {
@@ -58,7 +59,6 @@ public class GameOfLife {
                     }
 
                 }else{
-                    Board[i][j] = 0;
                     if (a == 3) {
                         Board[i][j] = 1;
                     }
@@ -68,7 +68,7 @@ public class GameOfLife {
     }
 
     public int neighbors(int i ,int j) {
-        int count = 1;
+        int count = 0;
 
             if(i==0 && j ==0){
                 if(Previous[i][j+1] == 1 ){ count++;}
@@ -111,7 +111,7 @@ public class GameOfLife {
                 if(Previous[i-1][j-1] == 1 ){ count++;}
                 if(Previous[i-1][j] == 1 ){count++;}
             }
-            if(i != 0 && j == Size -1){
+            if(i != 0 && j == Size -1 && i != Size -1){
                 if(Previous[i+1][j] == 1 ){ count++;}
                 if(Previous[i+1][j-1] == 1 ){ count++;}
                 if(Previous[i][j-1] == 1 ){ count++;}
@@ -129,5 +129,12 @@ public class GameOfLife {
             }
             return count;
     }
-}
+    public void evolution(int x) {
 
+        while (x > 0){
+            oneStep();
+            x--;
+        }
+    }
+}
+//5 evolution 5 neighbors // 5 onestep

@@ -19,6 +19,7 @@ public class TorusGameOfLife extends GameOfLife{
         Previous = new int[Size][Size];
         Board = new int[Size][Size];
         Board = data;
+        Previous = data;
     }
     @Override
     public int neighbors(int i ,int j) {
@@ -104,7 +105,7 @@ public class TorusGameOfLife extends GameOfLife{
             if(Previous[i-1][j-1] == 1 ){ count++;}
             if(Previous[i-1][j] == 1 ){count++;}
             if(Previous[i-1][0] == 1 ){ count++;}
-            if(Previous[i][0 == 1 ){ count++;}
+            if(Previous[i][0] == 1 ){ count++;}
             if(Previous[i+1][0] == 1 ){ count++;}
         }if(i != 0 && j != 0 && i != Size -1 && j!= Size -1){
             if(Previous[i][j+1] == 1 ){ count++;}
@@ -118,19 +119,8 @@ public class TorusGameOfLife extends GameOfLife{
         }
         return count;
     }
+
 }
-//        if(Previous[i+1][Size -1] == 1 ){ count++;}
-//        if(Previous[i][Size -1] == 1 ){ count++;}
-//        if(Previous[Size-1][Size-1] == 1 ){ count++;}
-//        if(Previous[Size-1][j] == 1 ){ count++;}
-//        if(Previous[Size-1][j+1] == 1 ){count++;}
-//        if(Previous[i+1][j+1] == 1 ){ count++;}
-//        if(Previous[i+1][j-1] == 1 ){ count++;}
-//        if(Previous[Size-1][j-1] == 1 ){ count++;}
-//        if(Previous[Size-1][0] == 1 ){ count++;}
-//        if(Previous[0][0] == 1 ){ count++;}
-//        if(Previous[1][0] == 1 ){ count++;}
-//        if(Previous[0][1] == 1 ){ count++;}
 
 
 
