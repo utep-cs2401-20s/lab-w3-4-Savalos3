@@ -1,8 +1,8 @@
 public class GameOfLife {
 
-    private int[][] Previous;
-    private int[][] Board;
-    private int Size;
+    protected int[][] Previous;
+    protected int[][] Board;
+    protected int Size;
 
     public GameOfLife() {
     }
@@ -19,7 +19,6 @@ public class GameOfLife {
         Previous = new int[Size][Size];
         Board = new int[Size][Size];
         Board = data;
-        Previous = Board;
     }
 
     public void setPrevious(int[][] Previous) {
@@ -47,85 +46,88 @@ public class GameOfLife {
     }
 
     public void oneStep() {
-        Previous = Board;
+        int[][] future =new int[Size][Size];
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board[i].length; j++) {
-
+                Previous[i][j] = Board[i][j];
                 int a = neighbors(i,j);
-                if(Previous[i][j] == 1 ){
-                    Board[i][j] = 0;
+                if(Board[i][j] == 1 ){
+                    future[i][j] = 0;
                     if (a == 2 || a == 3) {
-                        Board[i][j] = 1;
+                        future[i][j] = 1;
                     }
 
                 }else{
+                    future[i][j] = 0;
                     if (a == 3) {
-                        Board[i][j] = 1;
+                        future[i][j] = 1;
                     }
                 }
+
             }
         }
+        Board = future;
     }
 
     public int neighbors(int i ,int j) {
         int count = 0;
 
             if(i==0 && j ==0){
-                if(Previous[i][j+1] == 1 ){ count++;}
-                if(Previous[i+1][j] == 1 ){ count++;}
-                if(Previous[i+1][j+1] == 1 ){ count++;}
+                if(Board[i][j+1] == 1 ){ count++;}
+                if(Board[i+1][j] == 1 ){ count++;}
+                if(Board[i+1][j+1] == 1 ){ count++;}
             }
             if(i==0 && j!= 0 && j!= Size-1){
-                if(Previous[i][j-1] == 1 ){ count++;}
-                if(Previous[i+1][j-1] == 1 ){ count++;}
-                if(Previous[i+1][j] == 1 ){ count++;}
-                if(Previous[i+1][j+1] == 1 ){ count++;}
-                if(Previous[i][j+1] == 1 ){ count++;}
+                if(Board[i][j-1] == 1 ){ count++;}
+                if(Board[i+1][j-1] == 1 ){ count++;}
+                if(Board[i+1][j] == 1 ){ count++;}
+                if(Board[i+1][j+1] == 1 ){ count++;}
+                if(Board[i][j+1] == 1 ){ count++;}
             }
             if(i == 0 && j == Size -1){
-                if(Previous[i][j-1] == 1 ){ count++;}
-                if(Previous[i+1][j-1] == 1 ){ count++;}
-                if(Previous[i+1][j] == 1 ){ count++;}
+                if(Board[i][j-1] == 1 ){ count++;}
+                if(Board[i+1][j-1] == 1 ){ count++;}
+                if(Board[i+1][j] == 1 ){ count++;}
             }
             if(i != 0 && j== 0 && i != Size -1){
-                if(Previous[i-1][j] == 1 ){count++;}
-                if(Previous[i-1][j+1] == 1 ){ count++;}
-                if(Previous[i][j+1] == 1 ){ count++;}
-                if(Previous[i+1][j+1] == 1 ){ count++;}
-                if(Previous[i+1][j] == 1 ){ count++;}
+                if(Board[i-1][j] == 1 ){count++;}
+                if(Board[i-1][j+1] == 1 ){ count++;}
+                if(Board[i][j+1] == 1 ){ count++;}
+                if(Board[i+1][j+1] == 1 ){ count++;}
+                if(Board[i+1][j] == 1 ){ count++;}
             }
             if(i == Size - 1 && j ==0){
-                if(Previous[i-1][j] == 1 ){count++;}
-                if(Previous[i-1][j+1] == 1 ){ count++;}
-                if(Previous[i][j+1] == 1 ){ count++;}
+                if(Board[i-1][j] == 1 ){count++;}
+                if(Board[i-1][j+1] == 1 ){ count++;}
+                if(Board[i][j+1] == 1 ){ count++;}
             }
             if(i == Size - 1 && j !=0 && j!= Size - 1){
-                if(Previous[i][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j] == 1 ){count++;}
-                if(Previous[i-1][j+1] == 1 ){ count++;}
-                if(Previous[i][j+1] == 1 ){ count++;}
+                if(Board[i][j-1] == 1 ){ count++;}
+                if(Board[i-1][j-1] == 1 ){ count++;}
+                if(Board[i-1][j] == 1 ){count++;}
+                if(Board[i-1][j+1] == 1 ){ count++;}
+                if(Board[i][j+1] == 1 ){ count++;}
             }
             if(i == Size - 1 && j== Size - 1){
-                if(Previous[i][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j] == 1 ){count++;}
+                if(Board[i][j-1] == 1 ){ count++;}
+                if(Board[i-1][j-1] == 1 ){ count++;}
+                if(Board[i-1][j] == 1 ){count++;}
             }
             if(i != 0 && j == Size -1 && i != Size -1){
-                if(Previous[i+1][j] == 1 ){ count++;}
-                if(Previous[i+1][j-1] == 1 ){ count++;}
-                if(Previous[i][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j-1] == 1 ){ count++;}
-                if(Previous[i-1][j] == 1 ){count++;}
+                if(Board[i+1][j] == 1 ){ count++;}
+                if(Board[i+1][j-1] == 1 ){ count++;}
+                if(Board[i][j-1] == 1 ){ count++;}
+                if(Board[i-1][j-1] == 1 ){ count++;}
+                if(Board[i-1][j] == 1 ){count++;}
             }if(i != 0 && j != 0 && i != Size -1 && j!= Size -1){
-            if(Previous[i][j+1] == 1 ){ count++;}
-            if(Previous[i][j-1] == 1 ){ count++;}
-            if(Previous[i+1][j] == 1 ){ count++;}
-            if(Previous[i-1][j+1] == 1 ){ count++;}
-            if(Previous[i-1][j-1] == 1 ){ count++;}
-            if(Previous[i-1][j] == 1 ){count++;}
-            if(Previous[i+1][j+1] == 1 ){ count++;}
-            if(Previous[i+1][j-1] == 1 ){ count++;}
+            if(Board[i][j+1] == 1 ){ count++;}
+            if(Board[i][j-1] == 1 ){ count++;}
+            if(Board[i+1][j] == 1 ){ count++;}
+            if(Board[i-1][j+1] == 1 ){ count++;}
+            if(Board[i-1][j-1] == 1 ){ count++;}
+            if(Board[i-1][j] == 1 ){count++;}
+            if(Board[i+1][j+1] == 1 ){ count++;}
+            if(Board[i+1][j-1] == 1 ){ count++;}
             }
             return count;
     }
@@ -137,4 +139,3 @@ public class GameOfLife {
         }
     }
 }
-//5 evolution 5 neighbors // 5 onestep
